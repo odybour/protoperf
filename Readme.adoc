@@ -1,0 +1,4 @@
+== About
+
+The project contains test code for comparing the performance achieved using Google Protocol Buffers technology for data serialization,
+as opposed to other message formats (e.g. JSON, XML).
