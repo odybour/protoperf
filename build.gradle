@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
+ext {
+   // <generated.dir>${project.basedir}/src/main/generated</generated.dir>
+}
+
+repositories {
+    jcenter() // ? need to use Nexus repo here
+}
+
+dependencies {
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobuf_version
+    compile "io.vertx:vertx-core:${vertx_version}"
+    compile group: 'com.mycila.xmltool', name: 'xmltool', version: '3.3'
+    testCompile "junit:junit:${junit_version}"
+}
+
+sourceSets {
+    main {
+        proto {
+            srcDir 'src/main/proto'
+        }
+    }
+}
+
+protobuf {
+    generatedFilesBaseDir = "$projectDir/src/main/generated"
+}
+
+idea {
+    module {
+        sourceDirs += file('src/main/generated/main/java')
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = 2.12
+}

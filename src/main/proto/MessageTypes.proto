@@ -1,0 +1,9 @@
+message Location {
+    required double lat = 1;
+    required double lng = 2;
+    required double accuracy = 3;
+}
+
+message Test1 {
+    required int32 a = 1;
+}
